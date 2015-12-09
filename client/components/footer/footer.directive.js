@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .directive('footer', function () {
     return {
       templateUrl: 'components/footer/footer.html',

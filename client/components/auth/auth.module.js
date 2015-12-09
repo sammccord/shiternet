@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('shitternetApp.auth', [
-  'shitternetApp.constants',
-  'shitternetApp.util',
+angular.module('shiternetApp.auth', [
+  'shiternetApp.constants',
+  'shiternetApp.util',
   'ngCookies',
   'ui.router'
 ])

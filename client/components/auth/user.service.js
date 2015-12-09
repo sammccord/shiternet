@@ -22,7 +22,7 @@ function UserResource($resource) {
   });
 }
 
-angular.module('shitternetApp.auth')
+angular.module('shiternetApp.auth')
   .factory('User', UserResource);
 
 })();

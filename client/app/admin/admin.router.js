@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('shitternetApp.admin')
+angular.module('shiternetApp.admin')
   .config(function($stateProvider) {
     $stateProvider
       .state('admin', {

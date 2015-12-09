@@ -31,5 +31,5 @@ class LoginController {
   }
 }
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .controller('LoginController', LoginController);

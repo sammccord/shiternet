@@ -39,5 +39,5 @@ class SignupController {
   }
 }
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .controller('SignupController', SignupController);

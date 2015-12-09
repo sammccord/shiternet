@@ -27,5 +27,5 @@ class SettingsController {
   }
 }
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .controller('SettingsController', SettingsController);

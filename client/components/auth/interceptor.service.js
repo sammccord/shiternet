@@ -26,7 +26,7 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
   };
 }
 
-angular.module('shitternetApp.auth')
+angular.module('shiternetApp.auth')
   .factory('authInterceptor', authInterceptor);
 
 })();

@@ -3,7 +3,7 @@
 describe('Controller: MainController', function() {
 
   // load the controller's module
-  beforeEach(module('shitternetApp'));
+  beforeEach(module('shiternetApp'));
   beforeEach(module('stateMock'));
   beforeEach(module('socketMock'));
 

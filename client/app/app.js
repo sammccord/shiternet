@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('shitternetApp', [
-  'shitternetApp.auth',
-  'shitternetApp.admin',
-  'shitternetApp.constants',
+angular.module('shiternetApp', [
+  'shiternetApp.auth',
+  'shiternetApp.admin',
+  'shiternetApp.constants',
   'ngCookies',
   'ngResource',
   'ngSanitize',

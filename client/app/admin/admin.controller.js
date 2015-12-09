@@ -15,7 +15,7 @@ class AdminController {
   }
 }
 
-angular.module('shitternetApp.admin')
+angular.module('shiternetApp.admin')
   .controller('AdminController', AdminController);
 
 })();

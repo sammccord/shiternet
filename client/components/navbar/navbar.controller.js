@@ -17,5 +17,5 @@ class NavbarController {
   }
 }
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .controller('NavbarController', NavbarController);

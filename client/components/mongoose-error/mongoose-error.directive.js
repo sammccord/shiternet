@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

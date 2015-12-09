@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('login', {

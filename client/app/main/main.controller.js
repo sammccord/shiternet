@@ -30,7 +30,7 @@ class MainController {
   }
 }
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .controller('MainController', MainController);
 
 })();

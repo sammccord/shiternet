@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('shitternetApp.util', []);
+angular.module('shiternetApp.util', []);

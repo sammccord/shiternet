@@ -56,7 +56,7 @@ function UtilService($window) {
   return Util;
 }
 
-angular.module('shitternetApp.util')
+angular.module('shiternetApp.util')
   .factory('Util', UtilService);
 
 })();

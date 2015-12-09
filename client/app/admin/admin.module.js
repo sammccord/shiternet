@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('shitternetApp.admin', [
-  'shitternetApp.auth',
+angular.module('shiternetApp.admin', [
+  'shiternetApp.auth',
   'ui.router'
 ]);

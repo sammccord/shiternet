@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('shitternetApp')
+angular.module('shiternetApp')
   .directive('navbar', () => ({
     templateUrl: 'components/navbar/navbar.html',
     restrict: 'E',
