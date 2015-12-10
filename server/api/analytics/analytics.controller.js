@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/activity              ->  index
- * POST    /api/activity              ->  create
- * GET     /api/activity/:id          ->  show
- * PUT     /api/activity/:id          ->  update
- * DELETE  /api/activity/:id          ->  destroy
+ * GET     /api/analytics              ->  index
+ * POST    /api/analytics              ->  create
+ * GET     /api/analytics/:id          ->  show
+ * PUT     /api/analytics/:id          ->  update
+ * DELETE  /api/analytics/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var Activity = require('./activity.model');
+var Analytics = require('./analytics.model');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -59,50 +59,43 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Activitys
+// Gets a list of Analyticss
 exports.index = function(req, res) {
-  Activity.findAsync()
+  Analytics.findAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Gets a single Activity from the DB
+// Gets a single Analytics from the DB
 exports.show = function(req, res) {
-  Activity.findByIdAsync(req.params.id)
+  Analytics.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Creates a new Activity in the DB
+// Creates a new Analytics in the DB
 exports.create = function(req, res) {
-  Activity.createAsync(req.body)
+  Analytics.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };
 
-// Updates an existing Activity in the DB
+// Updates an existing Analytics in the DB
 exports.update = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Activity.findByIdAsync(req.params.id)
+  Analytics.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Deletes a Activity from the DB
+// Deletes a Analytics from the DB
 exports.destroy = function(req, res) {
-  Activity.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
-};
-
-exports.customFunction = function(req, res) {
-  Activity.findByIdAsync(req.params.id)
+  Analytics.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
