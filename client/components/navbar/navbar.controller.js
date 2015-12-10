@@ -1,19 +1,22 @@
 'use strict';
 
 class NavbarController {
-  //start-non-standard
-  menu = [{
-    'title': 'Home',
-    'state': 'main'
-  }];
+  constructor() {
+    this.$el = angular.element("#navbar");
+    this.main = angular.element("#main");
+    this.active = false;
+  }
 
-  isCollapsed = true;
-  //end-non-standard
-
-  constructor(Auth) {
-    this.isLoggedIn = Auth.isLoggedIn;
-    this.isAdmin = Auth.isAdmin;
-    this.getCurrentUser = Auth.getCurrentUser;
+  toggleSidebar() {
+    this.active = !this.active;
+    if(this.active){
+      this.$el.addClass("active");
+      this.main.addClass("active");
+    }
+    else{
+      this.$el.removeClass("active");
+      this.main.removeClass("active");
+    }
   }
 }
 

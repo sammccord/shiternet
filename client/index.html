@@ -7,13 +7,20 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-    <title></title>
+    <title>💩 Net</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0, minimal-ui" />
+    <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto" type="text/css">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png">
+    <!-- be 320 x 480 pixels and in portrait orientation. -->
+    <link rel="apple-touch-startup-image" href="/startup.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -66,10 +73,10 @@
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="components/auth/auth.module.js"></script>
       <script src="app/admin/admin.module.js"></script>
+      <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="components/auth/auth.service.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -78,8 +85,8 @@
       <script src="app/main/main.js"></script>
       <script src="app/stall/stall.controller.js"></script>
       <script src="app/stall/stall.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
-      <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
@@ -87,8 +94,10 @@
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/sideMenu/sideMenu.controller.js"></script>
+      <script src="components/sideMenu/sideMenu.directive.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
