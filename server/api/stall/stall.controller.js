@@ -79,11 +79,16 @@ exports.create = function(req, res) {
   if(!req.body.stallId) {
     return responseWithResult(res, 500)({});
   }
+  if(typeof req.body.active === "string"){
+    if(req.body.active === "True"){
+      req.body.active = true;
+    } else if(req.body.active === "False"){
+      req.body.active = false;
+    }
+  }
   Stall.findOneAndUpdate({
     "stallId": req.body.stallId
-  }, {
-    active: req.body.active
-  }, {
+  }, req.body , {
     upsert:true,
     new:true
   },

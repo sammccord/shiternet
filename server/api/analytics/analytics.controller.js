@@ -11,6 +11,16 @@
 
 var _ = require('lodash');
 var Analytics = require('./analytics.model');
+import config from '../../config/environment';
+
+var Twit = require('twit')
+
+var T = new Twit({
+    consumer_key:         config.TWITTER_CONSUMER
+  , consumer_secret:      config.TWITTER_SECRET
+  , access_token:         config.TWITTER_TOKEN
+  , access_token_secret:  config.TWITTER_ACCESS
+})
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;

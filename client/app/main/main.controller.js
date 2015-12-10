@@ -60,8 +60,7 @@ class MainController {
 
   updateStatus() {
     var activeCount = this.stalls.reduce(function(prev, curr){
-      console.log(curr.active)
-      if(curr.active) return prev+1;
+      if(!curr.active) return prev+1;
       else return prev;
     }, 0);
     if(activeCount > 0){
