@@ -18,8 +18,9 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  // require('../api/activity/activity.socket').register(socket);
   require('../api/stall/stall.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
+  // require('../api/thing/thing.socket').register(socket);
 
 }
 

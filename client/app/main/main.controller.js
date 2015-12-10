@@ -4,29 +4,35 @@
 
 class MainController {
 
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket, $location) {
     this.$http = $http;
+    this.$location = $location;
     this.awesomeThings = [];
 
-    $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-      socket.syncUpdates('thing', this.awesomeThings);
+    $http.get('/api/stalls').then(response => {
+      this.stalls = response.data;
+      socket.syncUpdates('stall', this.stalls);
     });
 
     $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('stall');
     });
   }
 
   addThing() {
     if (this.newThing) {
-      this.$http.post('/api/things', { name: this.newThing });
+      this.$http.post('/api/stalls', { name: this.newThing });
       this.newThing = '';
     }
   }
 
   deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
+    this.$http.delete('/api/stalls/' + thing._id);
+  }
+
+  redirect(id){
+    console.log(id)
+    this.$location.path("/stall/"+id)
   }
 }
 

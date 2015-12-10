@@ -6,6 +6,8 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Stall from '../api/stall/stall.model';
+import Activity from '../api/activity/activity.model';
 
 Thing.find({}).removeAsync()
   .then(function() {
@@ -55,5 +57,18 @@ User.find({}).removeAsync()
     })
     .then(function() {
       console.log('finished populating users');
+    });
+  });
+
+Activity.find({}).removeAsync()
+
+Stall.find({}).removeAsync()
+  .then(function() {
+    Stall.createAsync({
+      stallId : "1"
+    })
+    .then(function(thing) {
+      console.log(thing);
+      console.log('finished populating Stalls');
     });
   });

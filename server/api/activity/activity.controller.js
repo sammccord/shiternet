@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/stalls              ->  index
- * POST    /api/stalls              ->  create
- * GET     /api/stalls/:id          ->  show
- * PUT     /api/stalls/:id          ->  update
- * DELETE  /api/stalls/:id          ->  destroy
+ * GET     /api/activity              ->  index
+ * POST    /api/activity              ->  create
+ * GET     /api/activity/:id          ->  show
+ * PUT     /api/activity/:id          ->  update
+ * DELETE  /api/activity/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var Stall = require('./stall.model');
+var Activity = require('./activity.model');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -59,58 +59,43 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Stalls
+// Gets a list of Activitys
 exports.index = function(req, res) {
-  Stall.findAsync()
+  Activity.findAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Gets a single Stall from the DB
+// Gets a single Activity from the DB
 exports.show = function(req, res) {
-  Stall.findByIdAsync(req.params.id)
+  Activity.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Creates a new Stall in the DB
+// Creates a new Activity in the DB
 exports.create = function(req, res) {
-  if(!req.body.stallId) {
-    return responseWithResult(res, 500)({});
-  }
-  Stall.findOneAndUpdate({
-    "stallId": req.body.stallId
-  }, {
-    active: req.body.active
-  }, {
-    upsert:true,
-    new:true
-  },
-  function(err, stall){
-    if(err) return responseWithResult(res, 500)({});
-    stall.saveAsync();
-    return responseWithResult(res, 201)(stall);
-  });
-  // .then(responseWithResult(res, 201))
-  // .catch(handleError(res));
+  Activity.createAsync(req.body)
+    .then(responseWithResult(res, 201))
+    .catch(handleError(res));
 };
 
-// Updates an existing Stall in the DB
+// Updates an existing Activity in the DB
 exports.update = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Stall.findByIdAsync(req.params.id)
+  Activity.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Deletes a Stall from the DB
+// Deletes a Activity from the DB
 exports.destroy = function(req, res) {
-  Stall.findByIdAsync(req.params.id)
+  Activity.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
