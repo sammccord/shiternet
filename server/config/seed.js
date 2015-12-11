@@ -14,13 +14,61 @@ Thing.find({}).removeAsync()
 
 User.find({}).removeAsync();
 
+Activity.find({}).removeAsync()
+.then(function(){
+   Activity.createAsync({
+      stallId: 1,
+      active: false,
+      time: "2015-12-07T17:07:53-00:00"
+   },
+   {
+      stallId: 1,
+      active: true,
+      time: "2015-12-09T17:07:58-00:00"
+   },
+   {
+      stallId: 1,
+      active: false,
+      time: "2015-12-09T18:08:04-00:00"
+   },
+   {
+      stallId: 1,
+      active: true,
+      time: "2015-12-09T19:08:09-00:00"
+   },
+   {
+      stallId: 1,
+      active: false,
+      time: "2015-12-09T20:08:12-00:00"
+   },
+   {
+      stallId: 1,
+      active: true,
+      time: "2015-12-09T21:08:15-00:00"
+   },
+   {
+      stallId: 2,
+      active: true,
+      time: "2015-12-09T21:08:18-00:00"
+   },
+   {
+      stallId: 2,
+      active: true,
+      time: "2015-12-05T23:07:53-00:00"
+   }
+)
+});
 Activity.find({}).removeAsync();
 
 Stall.find({}).removeAsync()
   .then(function() {
     Stall.createAsync({
       stallId : "1"
-    })
+   },
+   {
+      stallId: "2"
+   }
+)
     .then(function(thing) {
       console.log(thing);
       console.log('finished populating Stalls');
