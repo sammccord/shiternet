@@ -31,6 +31,14 @@ body {
 .navbar {
   background-color:transparent;
 }
+.navbar-brand {
+  padding: 0;
+  margin-left: 2em;
+  margin-top : 1em;
+  img {
+    height: 100%;
+  }
+}
 @media (min-width: 768px) {
   .navbar-header {
     float:none !important;
