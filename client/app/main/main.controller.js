@@ -21,11 +21,12 @@ var availableSayings = [
 
 class MainController {
 
-  constructor($http, $scope, socket, $location) {
+  constructor($http, $scope, socket, $location, $state) {
     this.$http = $http;
     this.$scope = $scope;
     this.$location = $location;
     this.available = true;
+    this.$state = $state;
     this.body = angular.element('body');
 
     $http.get('/api/stalls').then(response => {
@@ -56,17 +57,7 @@ class MainController {
 
   redirect(id){
     this.body.removeClass('unavailable');
-    this.$location.path("/stall/"+id)
-  }
-
-  getSaying() {
-    if(!this.$scope.$$phase){
-      if(this.available){
-        return availableSayings[Math.floor(Math.random()*availableSayings.length)];
-      } else {
-        return occupiedSayings[Math.floor(Math.random()*occupiedSayings.length)];
-      }
-    }
+    this.$state.go("stall", {"stallId" : id})
   }
 
   updateStatus() {
@@ -77,10 +68,12 @@ class MainController {
     if(activeCount > 0){
       this.available = true;
       this.body.removeClass('unavailable');
+      this.saying = availableSayings[Math.floor(Math.random()*availableSayings.length)];
     }
     else {
       this.available = false;
       this.body.addClass('unavailable');
+      this.saying = occupiedSayings[Math.floor(Math.random()*occupiedSayings.length)];
     }
   }
 }
