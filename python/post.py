@@ -14,7 +14,6 @@ def stallPost(id, active, handicapped):
     conn.request("POST", "/api/stalls",
                  params, headers)
     response = conn.getresponse()
-    print response.status, response.reason
     data = response.read()
     conn.close()
 
