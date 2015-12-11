@@ -18,6 +18,7 @@
     "ejs": "^2.3.3",
     "mongoose": "^4.1.2",
     "bluebird": "^2.9.34",
+    "moment" : "*",
     "connect-mongo": "^0.8.1",
     "jsonwebtoken": "^5.0.0",
     "express-jwt": "^3.0.0",
