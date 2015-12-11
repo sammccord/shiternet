@@ -114,7 +114,15 @@ exports.stats = function(req, res){
    });
 };
 
-    
+exports.metrics = function(req, res){
+   var start = req.query.start;
+   var end = req.query.end;
+   var stallId = req.query.stallId;
+   var sg = new StatsGenerator();
+   sg.getMinAndMaxShitTime(start, end, stallId, function(activities){
+      res.status(200).json(activities);
+   });
+};
     
     // Deletes a Analytics from the DB
 exports.destroy = function(req, res) {
