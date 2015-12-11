@@ -10,7 +10,6 @@ class MainController {
     this.available = true;
     this.body = angular.element('body');
     this.availableSayings = [
-      'Go ahead and empty out that spaghetti hole.',
       "She's all yours."
     ]
 
