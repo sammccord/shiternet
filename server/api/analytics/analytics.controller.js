@@ -14,15 +14,14 @@ var Analytics = require('./analytics.model');
 var StatsGenerator = require('./analytics.statsGenerator');
 import config from '../../config/environment';
 
-var Twit = require('twit')
-
-var T = new Twit({
-    consumer_key:         config.TWITTER_CONSUMER
-  , consumer_secret:      config.TWITTER_SECRET
-  , access_token:         config.TWITTER_TOKEN
-  , access_token_secret:  config.TWITTER_ACCESS
-})
->>>>>>> cf71b447859dc5cb3a7728b7d1ec14ad44e9ca2b
+// var Twit = require('twit')
+// 
+// var T = new Twit({
+//     consumer_key:         config.TWITTER_CONSUMER
+//   , consumer_secret:      config.TWITTER_SECRET
+//   , access_token:         config.TWITTER_TOKEN
+//   , access_token_secret:  config.TWITTER_ACCESS
+// })
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
