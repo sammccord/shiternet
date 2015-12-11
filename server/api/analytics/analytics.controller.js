@@ -12,6 +12,17 @@
 var _ = require('lodash');
 var Analytics = require('./analytics.model');
 var StatsGenerator = require('./analytics.statsGenerator');
+import config from '../../config/environment';
+
+var Twit = require('twit')
+
+var T = new Twit({
+    consumer_key:         config.TWITTER_CONSUMER
+  , consumer_secret:      config.TWITTER_SECRET
+  , access_token:         config.TWITTER_TOKEN
+  , access_token_secret:  config.TWITTER_ACCESS
+})
+>>>>>>> cf71b447859dc5cb3a7728b7d1ec14ad44e9ca2b
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -62,7 +73,7 @@ function removeEntity(res) {
 
 // Gets a list of Analyticss
 exports.index = function(req, res) {
-  Analytics.findAsync()
+  Analytics.findOneAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };

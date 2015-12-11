@@ -8,8 +8,11 @@
   <div class="row">
     <div class="col-lg-12">
       <ul class="stall-list">
-        <li class="stall-item" ng-repeat="stall in main.stalls" ng-click="main.redirect(stall.stallId)">
-          {{stall | json : spacing}}
+        <li class="stall-item" ng-class="!stall.active ? '' : 'unavailable'" ng-repeat="stall in main.stalls" ng-click="main.redirect(stall.stallId)">
+          <h1><span class="toilet">🚽 </span>{{stall.info === "handicapped" ? "♿" : ""}}</h1>
+          <div class="stall-status pull-right">
+            {{!stall.active ? "👍💩🎉💯" : "✋🚫🌚💣"}}
+          </div>
         </li>
       </ul>
     </div>
