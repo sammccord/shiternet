@@ -46,7 +46,7 @@ class MainController {
   }
 
   redirect(id){
-    console.log(id)
+    this.body.removeClass('unavailable');
     this.$location.path("/stall/"+id)
   }
 

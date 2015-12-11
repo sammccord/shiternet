@@ -71,7 +71,7 @@ function removeEntity(res) {
 
 // Gets a list of Analyticss
 exports.index = function(req, res) {
-  Analytics.findAsync()
+  Analytics.findOneAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };

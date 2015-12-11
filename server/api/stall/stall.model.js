@@ -8,7 +8,8 @@ var StallSchema = new Schema({
   stallId: String,
   info: { type: String, default: "" },
   active: { type: Boolean, default: false },
-  activity: [{ type: Schema.Types.ObjectId, ref: "Activity" }]
+  activity: [{ type: Schema.Types.ObjectId, ref: "Activity" }],
+  handicapped: { type: Boolean, default: false }
 });
 
 StallSchema
