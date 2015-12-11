@@ -9,7 +9,8 @@ angular.module('shiternetApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'validation.match'
+  'validation.match',
+  'nvd3'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
