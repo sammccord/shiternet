@@ -54,7 +54,7 @@ angular.module('shiternetApp')
               xAxis: {
                   axisLabel: 'Time',
                   tickFormat: function(d) {
-                      return moment(d).format("MM-DD-YY HH:MM")
+                      return moment(d).format("MM-DD-YY HH:mm")
                   },
                   rotateLabels: 15,
                   showMaxMin: false
@@ -68,7 +68,7 @@ angular.module('shiternetApp')
               },
               tooltip: {
                   keyFormatter: function(d) {
-                      return moment(d).format("MM-DD-YY HH:MM") + " 💩 "
+                      return moment(d).format("MM-DD-YY HH:mm") + " 💩 "
                   }
               },
               zoom: {
