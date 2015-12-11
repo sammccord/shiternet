@@ -60,7 +60,7 @@ StatsGenerator.prototype.giveMeShitTimesForRange = function(activities, start, e
    var tempArr = []
    var previousClosedTime= null;
    _.each(activities, function(activity){
-      if (!activity.active) {// it's closed
+      if (activity.active) {// it's closed
          previousClosedTime = activity.time;   
       } else {// it's open
          if (previousClosedTime){
