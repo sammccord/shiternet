@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Analytics = require('./analytics.model');
+var StatsGenerator = require('./analytics.statsGenerator');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -93,7 +94,19 @@ exports.update = function(req, res) {
     .catch(handleError(res));
 };
 
-// Deletes a Analytics from the DB
+exports.stats = function(req, res){
+   var start = req.query.start;
+   var end = req.query.end;
+   var stallId = req.query.stallId;
+   var sg = new StatsGenerator();
+   sg.giveMeStats(start, end, stallId, function(activities){
+      res.status(200).json({stats : activities});
+   });
+};
+
+    
+    
+    // Deletes a Analytics from the DB
 exports.destroy = function(req, res) {
   Analytics.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
