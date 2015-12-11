@@ -24,7 +24,7 @@ StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
          
       }).sort({time: 1}).exec(function(error, activities){
          // console.log(activities);
-         var buckets = self.giveMeBucketsFromActivities(activities, start, end);
+         var buckets = self.giveMeShitTimesForRange(activities, start, end);
          done(buckets);
       });
 };
