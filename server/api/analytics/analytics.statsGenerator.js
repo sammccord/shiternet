@@ -8,6 +8,7 @@ var moment = require('moment');
 function StatsGenerator(timeRange) {
   // always initialize all instance properties
   this.timeRange = timeRange ? timeRange : '24h'
+  
 }
 // class methods
 StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
@@ -17,18 +18,30 @@ StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
       {
          stallId : stallId, 
          time: {
-            $gte : moment(Number(start*1000)).toISOString(),
-            $lte : moment(Number(end*1000)).toISOString()
+            $gte : moment(Number(start)).toISOString(),
+            $lte : moment(Number(end)).toISOString()
          }
          
-      }, function(error, activities){
+      }).sort({time: 1}).exec(function(error, activities){
+         // console.log(activities);
          var buckets = self.giveMeBucketsFromActivities(activities, start, end);
          done(buckets);
-      })
+      });
 };
 
 
-StatsGenerator.prototype.giveMeBucketsFromActivities = function(activities, start, end){
+StatsGenerator.prototype.giveMeShitTimesForRange = function(activities, start, end){
+   // var times = {      
+   //       start: start,
+   //       end: end,
+   //       buckets: []
+   // };
+   // _.each(activities, function(activity){
+   //    start.buckets.push(activity)
+   // });
+   // 
+   
+   
    return {
       start: start,
       end: end,
@@ -45,27 +58,5 @@ StatsGenerator.prototype.giveMeBucketsFromActivities = function(activities, star
    };
 }
 
-StatsGenerator.prototype.getTimeRangeFromChar = function(timeRange) {
-   
-   var epoch = new Date().getTime() / 1000;
-   var hour = (60 * 60);
-   var day = (hour * 24);
-   var week = (day * 7);
-   var month = (day * 30);
-   
-   switch (timeRange){
-      case 'h':
-         return {start: epoch-hour, end: epoch };
-      case 'd':
-         return {start: epoch-day, end: epoch };
-      case 'w':
-         return {start: epoch-week, end: epoch };
-      case 'm':
-         return {start: epoch-month, end: epoch };
-      default:
-         return {start: 0, end: epoch}
-   }
-
-};
 // export the class
 module.exports = StatsGenerator;
