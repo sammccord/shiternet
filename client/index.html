@@ -7,12 +7,24 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-    <title></title>
+    <title>LRShit</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0, minimal-ui" />
+    <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto" type="text/css">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-touch-icon-152x152.png">
+    <!-- be 320 x 480 pixels and in portrait orientation. -->
+    <link rel="apple-touch-startup-image" href="assets/images/startup.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -56,6 +68,10 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+      <script src="bower_components/d3/d3.js"></script>
+      <script src="bower_components/nvd3/build/nv.d3.js"></script>
+      <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -72,6 +88,8 @@
       <script src="app/app.constant.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
+      <script src="app/stall/stall.controller.js"></script>
+      <script src="app/stall/stall.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
@@ -81,6 +99,8 @@
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/sideMenu/sideMenu.controller.js"></script>
+      <script src="components/sideMenu/sideMenu.directive.js"></script>
       <script src="components/socket/socket.service.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>

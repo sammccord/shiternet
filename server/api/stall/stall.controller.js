@@ -11,6 +11,8 @@
 
 var _ = require('lodash');
 var Stall = require('./stall.model');
+var Analytics = require('../analytics/analytics.model');
+var moment = require('moment');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -59,6 +61,28 @@ function removeEntity(res) {
   };
 }
 
+function addToCumulativeTime(stall) {
+  if(stall.active === false){
+    Stall.findById(stall._id)
+    .populate('activity')
+    .exec(function(err, stall){
+      var lastOpen = stall.activity[stall.activity.length -1];
+      var lastClosed = stall.activity[stall.activity.length -2];
+      if(lastOpen && lastClosed) {
+        var duration = moment.duration(moment(lastOpen.time).diff(moment(lastClosed.time)));
+        var seconds = duration.seconds();
+        Analytics.findOne(function(err, analytics){
+          var count = analytics.cumulativeTime + seconds;
+          analytics.cumulativeTime = count;
+          analytics.save(function(err, analytics){
+            console.log(analytics);
+          });
+        });
+      }
+    });
+  }
+}
+
 // Gets a list of Stalls
 exports.index = function(req, res) {
   Stall.findAsync()
@@ -68,7 +92,9 @@ exports.index = function(req, res) {
 
 // Gets a single Stall from the DB
 exports.show = function(req, res) {
-  Stall.findByIdAsync(req.params.id)
+  Stall.findOneAsync({
+    stallId: req.params.id
+  })
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
@@ -76,9 +102,31 @@ exports.show = function(req, res) {
 
 // Creates a new Stall in the DB
 exports.create = function(req, res) {
-  Stall.createAsync(req.body)
-    .then(responseWithResult(res, 201))
-    .catch(handleError(res));
+  if(!req.body.stallId) {
+    return responseWithResult(res, 500)({});
+  }
+  if(typeof req.body.active === "string"){
+    if(req.body.active === "True"){
+      req.body.active = true;
+    } else if(req.body.active === "False"){
+      req.body.active = false;
+    }
+  }
+  Stall.findOneAndUpdate({
+    "stallId": req.body.stallId
+  }, req.body , {
+    upsert:true,
+    new:true
+  },
+  function(err, stall){
+    if(err) return responseWithResult(res, 500)({});
+    stall.saveAsync();
+    addToCumulativeTime(stall);
+    return responseWithResult(res, 201)(stall);
+  });
+
+  // .then(responseWithResult(res, 201))
+  // .catch(handleError(res));
 };
 
 // Updates an existing Stall in the DB
