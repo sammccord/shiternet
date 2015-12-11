@@ -1,11 +1,13 @@
 'use strict';
 
 class NavbarController {
-  constructor($location) {
+  constructor($location, $state) {
     this.$location = $location;
     this.$el = angular.element("#navbar");
     this.main = angular.element("#main");
     this.active = false;
+    this.$state = $state;
+    console.log($state)
   }
 
   toggleSidebar() {
@@ -21,7 +23,7 @@ class NavbarController {
   }
 
   goHome() {
-    this.$location.path("/")
+    this.$state.go('main')
   }
 }
 

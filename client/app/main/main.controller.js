@@ -2,29 +2,31 @@
 
 (function() {
 
+var availableSayings = [
+    "Now's the time.",
+    "Get get'er tiger.",
+    "She's all yours.",
+    "Yep.",
+    "If you don't go after what you want, you'll never have it.",
+    "Don't let your dreams be dreams."
+  ]
+
+  var occupiedSayings = [
+    'No poop for you',
+    "Hold it.",
+    "Waiting is the hardest part.",
+    "Nope.",
+    "Occupado"
+  ]
+
 class MainController {
 
   constructor($http, $scope, socket, $location) {
     this.$http = $http;
+    this.$scope = $scope;
     this.$location = $location;
     this.available = true;
     this.body = angular.element('body');
-    this.availableSayings = [
-      "Now's the time.",
-      "Get get'er tiger.",
-      "She's all yours.",
-      "Yep.",
-      "If you don't go after what you want, you'll never have it.",
-      "Don't let your dreams be dreams."
-    ]
-
-    this.occupiedSayings = [
-      'No poop for you',
-      "Hold it.",
-      "Waiting is the hardest part.",
-      "Nope.",
-      "Occupado"
-    ]
 
     $http.get('/api/stalls').then(response => {
       this.stalls = response.data;
@@ -58,10 +60,12 @@ class MainController {
   }
 
   getSaying() {
-    if(this.available){
-      return this.availableSayings[Math.floor(Math.random()*this.availableSayings.length)];
-    } else {
-      return this.occupiedSayings[Math.floor(Math.random()*this.occupiedSayings.length)];
+    if(!this.$scope.$$phase){
+      if(this.available){
+        return availableSayings[Math.floor(Math.random()*availableSayings.length)];
+      } else {
+        return occupiedSayings[Math.floor(Math.random()*occupiedSayings.length)];
+      }
     }
   }
 
