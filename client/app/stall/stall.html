@@ -1,8 +1,9 @@
 <navbar></navbar>
 
-<div class="container" id="main">
+<div class="container stall-detail" id="main">
   <div class="row">
     <div class="col-lg-12">
+      <h1><span class="toilet">🚽 </span>{{stall.handicapped ? "♿ "+stall.stallId : " "+stall.stallId}}</h1>
       <nvd3 options="options" data="data"></nvd3>
     </div>
   </div>

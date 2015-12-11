@@ -92,7 +92,9 @@ exports.index = function(req, res) {
 
 // Gets a single Stall from the DB
 exports.show = function(req, res) {
-  Stall.findByIdAsync(req.params.id)
+  Stall.findOneAsync({
+    stallId: req.params.id
+  })
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
