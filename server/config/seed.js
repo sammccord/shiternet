@@ -15,6 +15,29 @@ Thing.find({}).removeAsync()
 User.find({}).removeAsync()
 
 Activity.find({}).removeAsync()
+.then(function(){
+   Activity.createAsync({
+      stallId: 1,
+      active: false,
+      time: "2015-12-07T17:07:53-07:00"
+   }, 
+   {
+      stallId: 1,
+      active: false,
+      time: "2015-12-09T17:07:53-07:00"
+   },
+   {
+      stallId: 2,
+      active: true,
+      time: "2015-12-04T17:07:53-07:00"
+   },
+   {
+      stallId: 2,
+      active: true,
+      time: "2015-12-05T17:07:53-07:00"
+   }
+)
+});
 
 Stall.find({}).removeAsync()
   .then(function() {

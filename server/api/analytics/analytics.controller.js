@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Analytics = require('./analytics.model');
+var StatsGenerator = require('./analytics.statsGenerator');
 import config from '../../config/environment';
 
 var Twit = require('twit')
@@ -21,6 +22,7 @@ var T = new Twit({
   , access_token:         config.TWITTER_TOKEN
   , access_token_secret:  config.TWITTER_ACCESS
 })
+>>>>>>> cf71b447859dc5cb3a7728b7d1ec14ad44e9ca2b
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -103,7 +105,19 @@ exports.update = function(req, res) {
     .catch(handleError(res));
 };
 
-// Deletes a Analytics from the DB
+exports.stats = function(req, res){
+   var start = req.query.start;
+   var end = req.query.end;
+   var stallId = req.query.stallId;
+   var sg = new StatsGenerator();
+   sg.giveMeStats(start, end, stallId, function(activities){
+      res.status(200).json({stats : activities});
+   });
+};
+
+    
+    
+    // Deletes a Analytics from the DB
 exports.destroy = function(req, res) {
   Analytics.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
