@@ -11,7 +11,7 @@ function StatsGenerator(timeRange) {
   
 }
 // class methods
-StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
+StatsGenerator.prototype.getShitsForRange = function(start, end, stallId, done) {
    var self = this;
     
    Activity.find(
@@ -21,12 +21,34 @@ StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
             $gte : moment(Number(start)).toISOString(),
             $lte : moment(Number(end)).toISOString()
          }
-         
       }).sort({time: 1}).exec(function(error, activities){
-         var buckets = self.giveMeShitTimesForRange(activities, start, end);
-         done(buckets);
+          done(activities);
       });
 };
+
+StatsGenerator.prototype.giveMeStats = function(start, end, stallId, done) {
+   var self = this;
+   self.getShitsForRange(start, end, stallId, function(activities){
+      var buckets = self.giveMeShitTimesForRange(activities, start, end);
+      done(buckets);
+   });
+};
+
+StatsGenerator.prototype.getMinAndMaxShitTime = function(start, end, stallId, done){
+
+   var self = this;
+   
+   self.getShitsForRange(start, end, stallId, function(activities){
+      var shitData = self.giveMeShitTimesForRange(activities, start, end);
+      var sortedShits = _.pluck(_.sortBy(shitData.buckets, 'durationMs'), 'durationMs');
+      var metrics = {
+         min: sortedShits[0],
+         max: sortedShits[sortedShits.length-1]
+      }
+      done(metrics);
+   });
+}
+
 
 
 StatsGenerator.prototype.giveMeShitTimesForRange = function(activities, start, end){
@@ -53,6 +75,8 @@ StatsGenerator.prototype.giveMeShitTimesForRange = function(activities, start, e
    });
    return shitData;
 }
+
+
 
 // export the class
 module.exports = StatsGenerator;
