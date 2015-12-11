@@ -1,7 +1,8 @@
 'use strict';
 
 class NavbarController {
-  constructor() {
+  constructor($location) {
+    this.$location = $location;
     this.$el = angular.element("#navbar");
     this.main = angular.element("#main");
     this.active = false;
@@ -17,6 +18,10 @@ class NavbarController {
       this.$el.removeClass("active");
       this.main.removeClass("active");
     }
+  }
+
+  goHome() {
+    this.$location.path("/")
   }
 }
 

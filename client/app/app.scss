@@ -31,6 +31,11 @@ body {
 .navbar {
   background-color:transparent;
 }
+@media (min-width: 768px) {
+  .navbar-header {
+    float:none !important;
+  }
+}
 
 .navbar-default {
   border:none;
@@ -64,6 +69,11 @@ body {
   .navbar-toggle {
     display: block;
   }
+}
+
+.home-button {
+  margin: 0;
+  margin-left: 12px;
 }
 
 @-webkit-keyframes AnimationName {
