@@ -58,6 +58,7 @@ Activity.find({}).removeAsync()
    }
 )
 });
+Activity.find({}).removeAsync();
 
 Stall.find({}).removeAsync()
   .then(function() {
