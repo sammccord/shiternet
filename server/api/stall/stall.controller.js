@@ -112,6 +112,13 @@ exports.create = function(req, res) {
       req.body.active = false;
     }
   }
+  if(req.body.handicapped && typeof req.body.handicapped === "string"){
+    if(req.body.handicapped === "True"){
+      req.body.handicapped = true;
+    } else if(req.body.handicapped === "False"){
+      req.body.handicapped = false;
+    }
+  }
   Stall.findOneAndUpdate({
     "stallId": req.body.stallId
   }, req.body , {

@@ -11,30 +11,7 @@ function translate(buckets) {
   return retVal;
 }
 
-angular.module('shiternetApp')
-    .controller('StallCtrl', function($scope, $stateParams, $http) {
-        $scope.message = 'Hello';
-        var id = $stateParams.stallId
-        var endDate = moment().valueOf();
-        $http.get('/api/analytics/stats/?stallId='+id+'&start=0&end='+endDate+'').then(response => {
-          $scope.data = translate(response.data.stats.buckets);
-          console.log($scope.data);
-          $scope.data = [
-            {
-                "key" : "TIS (Time in Stall)" ,
-                "bar": true,
-                "values" : translate(response.data.stats.buckets)
-            }];
-        });
-        $http.get('/api/stalls/'+id).then(response => {
-          console.log(response.data);
-          $scope.stall = response.data;
-        });
-        $http.get('/api/analytics/metrics/?stallId='+id+'&start=0&end='+endDate+'').then(response => {
-          $scope.min = moment.duration(response.data.min, "milliseconds").humanize();
-          $scope.max = moment.duration(response.data.max, "milliseconds").humanize();
-        });
-        $scope.options = {
+var options = {
           chart: {
               type: 'historicalBarChart',
               height: 450,
@@ -82,4 +59,34 @@ angular.module('shiternetApp')
               }
           }
         };
+
+angular.module('shiternetApp')
+    .controller('StallCtrl', function($scope, $stateParams, $http) {
+        $scope.message = 'Hello';
+        var id = $stateParams.stallId
+        var endDate = moment().valueOf();
+        $scope.options = options;
+        $scope.data = [
+          {
+              "key" : "TIS (Time in Stall)" ,
+              "bar": true,
+              "values" : []
+        }];
+        $http.get('/api/analytics/stats/?stallId='+id+'&start=0&end='+endDate+'').then(response => {
+          $scope.data = [
+            {
+                "key" : "TIS (Time in Stall)" ,
+                "bar": true,
+                "values" : translate(response.data.stats.buckets)
+            }];
+        });
+        $http.get('/api/stalls/'+id).then(response => {
+          console.log(response.data);
+          $scope.stall = response.data;
+        });
+        $http.get('/api/analytics/metrics/?stallId='+id+'&start=0&end='+endDate+'').then(response => {
+          $scope.min = moment.duration(response.data.min, "milliseconds").humanize();
+          $scope.max = moment.duration(response.data.max, "milliseconds").humanize();
+        });
+
 });

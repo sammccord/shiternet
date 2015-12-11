@@ -10,13 +10,20 @@ class MainController {
     this.available = true;
     this.body = angular.element('body');
     this.availableSayings = [
-      'Go ahead and empty out that spaghetti hole.',
-      "She's all yours."
+      "Now's the time.",
+      "Get get'er tiger.",
+      "She's all yours.",
+      "Yep.",
+      "If you don't go after what you want, you'll never have it.",
+      "Don't let your dreams be dreams."
     ]
 
     this.occupiedSayings = [
       'No poop for you',
-      "Hold it."
+      "Hold it.",
+      "Waiting is the hardest part.",
+      "Nope.",
+      "Occupado"
     ]
 
     $http.get('/api/stalls').then(response => {
