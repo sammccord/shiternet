@@ -49,7 +49,7 @@ Activity.find({}).removeAsync()
    {
       stallId: 2,
       active: true,
-      time: "2015-12-04T22:0-07:00"
+      time: "2015-12-09T21:08:18-07:00"
    },
    {
       stallId: 2,
