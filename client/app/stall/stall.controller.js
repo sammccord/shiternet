@@ -60,7 +60,7 @@ angular.module('shiternetApp')
                   showMaxMin: false
               },
               yAxis: {
-                  axisLabel: 'TIS (Time in Stall)',
+                  axisLabel: '',
                   axisLabelDistance: -10,
                   tickFormat: function(d){
                       return moment.duration(d, "milliseconds").humanize()
