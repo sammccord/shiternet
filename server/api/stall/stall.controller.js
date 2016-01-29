@@ -13,6 +13,7 @@ var _ = require('lodash');
 var Stall = require('./stall.model');
 var Analytics = require('../analytics/analytics.model');
 var moment = require('moment');
+var SlackWebhook = require('../../components/sendSlackWebhook');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -129,6 +130,7 @@ exports.create = function(req, res) {
     if(err) return responseWithResult(res, 500)({});
     stall.saveAsync();
     addToCumulativeTime(stall);
+    SlackWebhook.sendWebhook();
     return responseWithResult(res, 201)(stall);
   });
 
